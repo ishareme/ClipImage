@@ -1,4 +1,7 @@
 export default {
+    readFileSize: function (file) {
+        return (file.size / 1024).toFixed(4) > 1024 ?  (file.size / 1024 * 1024).toFixed(4)+ ' MB' : (file.size / 1024).toFixed(4)+ ' KB'
+    },
     isImageDom: function (img) {
         return img.tagName.toLowerCase() === 'img';
     },

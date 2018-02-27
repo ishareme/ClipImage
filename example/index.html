@@ -37,21 +37,21 @@
 
 
 
-        let $origin = document.getElementById('origin')
-        let $result = document.getElementById('result')
-        new ClipImage($originCanvas,{
-            width: '200px',
-            height: '200px',
-            left: '100px', //数字 px, %, center top 等等
-            top: '100px',
-            type: 'jpg',
-            success(b64){
-
-                console.log('client normal', b64)
-                $result.src = b64
-            },
-            error(){},
-        })
+        // let $origin = document.getElementById('origin')
+        // let $result = document.getElementById('result')
+        // new ClipImage($originCanvas,{
+        //     width: '200px',
+        //     height: '200px',
+        //     left: '100px', //数字 px, %, center top 等等
+        //     top: '100px',
+        //     type: 'jpg',
+        //     success(b64){
+        //
+        //         console.log('client normal', b64)
+        //         $result.src = b64
+        //     },
+        //     error(){},
+        // })
 
         new ClipImage('http://mtapplet.meitudata.com/596c72073971d86b5128.jpg',{
             width: 100,

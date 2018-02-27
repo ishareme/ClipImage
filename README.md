@@ -1,10 +1,8 @@
-# MAPP 的参数配置工具
-
 # ClipImage
 
-> [git](https://github.com/ishareme/clipimage)
+> [git](https://github.com/ishareme/ClipImage)
 
-> [npm](http://npm.meitu-int.com/#@meitu/clipimage)
+> [npm](http://npm.meitu-int.com/#@meitu/ClipImage)
 
 ## Example
 
@@ -17,11 +15,11 @@
  ```
  
  ```shell
- npm i @meitu/clipimage --save
+ npm i @meitu/ClipImage --save
  ```
 
  ```shell
- import ImageClip from '@meitu/clipimage';
+ import ClipImage from '@meitu/clipimage';
  ```
  
  

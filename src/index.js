@@ -54,12 +54,12 @@ ClipImage.prototype = {
             };
             this.sourceImage.src = utils.isImageDom(source) ? source.src : source;
         }
-        else if (utils.isCanvasDom(source)){
+        else if (utils.isCanvasDom(source) || utils.isVideoDom(source)){
             this.sourceImage = source;
             this.clip(resolve);
         }
-        else if (utils.isVideoDom(source)){
-
+        else {
+            reject()
         }
     },
     clip(resolve){
@@ -71,6 +71,14 @@ ClipImage.prototype = {
 
         this.configOptions.success && this.configOptions.success(this.resultB64);
 
+        // this.resultCanvas.toBlob((result) => {
+        //     console.log('toBlob result', result)
+        //
+        //     this.resultObj.b64 = this.resultB64
+        //     this.resultObj.size = 'Size: ' + utils.readFileSize(result)
+        //     this.resultObj.type = 'Type: ' + result.type
+        //     this.resultObj.width = this.op
+        // }, `image/${this.getOutType(this.configOptions.type)}`)
         resolve(this.resultB64);
     },
 
