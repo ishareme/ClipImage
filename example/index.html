@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>图片裁剪</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            border: 0;
+        }
+        html,body{
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<!--<img id="origin" src="http://mtapplet.meitudata.com/596c72073971d86b5128.jpg" alt="">-->
+<canvas id="originCanvas"></canvas>
+<img id="result" alt="">
+    <script src="dist/example.js"></script>
+
+    <script>
+        let $originCanvas = document.getElementById('originCanvas')
+        let ctx = $originCanvas.getContext('2d')
+        let canvasImage = new Image()
+        canvasImage.setAttribute('crossOrigin', 'anonymous');
+        canvasImage.onload = function () {
+            $originCanvas.width = canvasImage.width
+            $originCanvas.height = canvasImage.height
+
+            ctx.drawImage(canvasImage,0,0,$originCanvas.width,$originCanvas.height)
+        }
+        canvasImage.src = 'http://mtapplet.meitudata.com/596c72073971d86b5128.jpg'
+
+
+
+        let $origin = document.getElementById('origin')
+        let $result = document.getElementById('result')
+        new ClipImage($originCanvas,{
+            width: '200px',
+            height: '200px',
+            left: '100px', //数字 px, %, center top 等等
+            top: '100px',
+            type: 'jpg',
+            success(b64){
+
+                console.log('client normal', b64)
+                $result.src = b64
+            },
+            error(){},
+        })
+
+        new ClipImage('http://mtapplet.meitudata.com/596c72073971d86b5128.jpg',{
+            width: 100,
+            height: 100,
+            left: 'center', //数字 px, %, center top 等等
+            top: 'center',
+            type: 'jpg',
+            // success(b64){
+            //
+            //     console.log('client', b64)
+            //
+            //     console.log($result)
+            //     $result.src = b64
+            // },
+            // error(){},
+        }).then(function (b64) {
+            console.log('client promise', b64)
+            $result.src = b64
+        })
+    </script>
+</body>
+</html>
