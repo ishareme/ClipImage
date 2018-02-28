@@ -1,6 +1,6 @@
 {
   "name": "@meitu/ClipImage",
-  "version": "1.1.0",
+  "version": "1.1.2",
   "description": "meitu library template.",
   "main": "dist/ClipImage.js",
   "module": "dist/ClipImage.es.js",
@@ -33,7 +33,7 @@
     "rollup-plugin-babel": "^2.7.1",
     "rollup-plugin-node-resolve": "^3.0.0",
     "rollup-plugin-sourcemaps": "^0.4.2",
-    "rollup-plugin-uglify": "^1.0.2",
+    "rollup-plugin-uglify": "^1.0.1",
     "rollup-watch": "^3.2.2"
   }
 }

@@ -11,15 +11,11 @@
 ## Getting Started
  
  ```shell
- npm set registry http://npm.meitu-int.com 
- ```
- 
- ```shell
- npm i @meitu/ClipImage --save
+
  ```
 
  ```shell
- import ClipImage from '@meitu/clipimage';
+ import ClipImage from 'clipimage';
  ```
  
  
