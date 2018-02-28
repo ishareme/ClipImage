@@ -6,7 +6,7 @@
 
 ## Example
 
-[example](http://f2er.meitu.com/hmz/imageclip/example/index.html)
+[example](http://f2er.meitu.com/hmz/ClipImageDemo)
 
 ## Getting Started
  

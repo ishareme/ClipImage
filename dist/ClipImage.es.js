@@ -1,51 +1,51 @@
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
 var utils = {
-    isImageDom: function isImageDom(img) {
+    readFileSize: function (file) {
+        return (file.size / 1024).toFixed(4) > 1024 ? (file.size / 1024 * 1024).toFixed(4) + ' MB' : (file.size / 1024).toFixed(4) + ' KB';
+    },
+    isImageDom: function (img) {
         return img.tagName.toLowerCase() === 'img';
     },
-    isCanvasDom: function isCanvasDom(canvas) {
+    isCanvasDom: function (canvas) {
         return canvas.tagName.toLowerCase() === 'canvas';
     },
-    isVideoDom: function isVideoDom(video) {
+    isVideoDom: function (video) {
         return video.tagName.toLowerCase() === 'video';
     },
 
-    isPX: function isPX(str) {
+    isPX: function (str) {
         return str.trim().endsWith('px');
     },
-    isPercent: function isPercent(str) {
+    isPercent: function (str) {
         return str.trim().endsWith('%');
     },
-    isCenter: function isCenter(str) {
+    isCenter: function (str) {
         return str.trim().toLowerCase() === 'center';
     },
-    isLeft: function isLeft(str) {
+    isLeft: function (str) {
         return str.trim().toLowerCase() === 'left';
     },
-    isTop: function isTop(str) {
+    isTop: function (str) {
         return str.trim().toLowerCase() === 'top';
     },
-    isRight: function isRight(str) {
+    isRight: function (str) {
         return str.trim().toLowerCase() === 'right';
     },
-    isBottom: function isBottom(str) {
+    isBottom: function (str) {
         return str.trim().toLowerCase() === 'bottom';
     },
 
-    isPNG: function isPNG(val) {
+    isPNG(val) {
         return val.trim().toLowerCase() === 'png';
     },
-    isJPG: function isJPG(val) {
+    isJPG(val) {
         return val.trim().toLowerCase() === 'jpg' || val.trim().toLowerCase() === 'jpeg';
     },
-
     //数组判断
     isArray: Array.isArray || function (arr) {
         return Array.prototype.toString.call(arr) === '[object Array]';
     },
     //判断数字
-    isNumber: function isNumber(val) {
+    isNumber: function (val) {
         //isFinite 检测是否为无穷大
         //isNumber(parseInt(a))   // true
         // 第一种写法
@@ -54,44 +54,34 @@ var utils = {
         // return typeof val === 'number' && !isNaN(val)
     },
     //判断字符串
-    isString: function isString(str) {
+    isString: function (str) {
         return typeof str === 'string';
     },
     //判断布尔值
-    isBoolean: function isBoolean(bool) {
+    isBoolean: function (bool) {
         return typeof bool === 'boolean';
     },
     //判断函数
-    isFun: function isFun(fn) {
+    isFun: function (fn) {
         return typeof fn === 'function';
     },
     //判断对象
-    isObject: function isObject(obj) {
+    isObject: function (obj) {
         //{},[],null 用typeof检测不出来
         return Object.prototype.toString.call(obj) === '[object Object]';
     },
     //判断undefined
-    isUndefined: function isUndefined(undefined) {
+    isUndefined: function (undefined) {
         return typeof undefined === 'undefined';
     },
-    isNull: function isNull(n) {
+    isNull: function (n) {
         //判断空值用 n === null
         return n === null;
     },
-    isNaN: function (_isNaN) {
-        function isNaN(_x) {
-            return _isNaN.apply(this, arguments);
-        }
-
-        isNaN.toString = function () {
-            return _isNaN.toString();
-        };
-
-        return isNaN;
-    }(function (val) {
+    isNaN: function (val) {
         return typeof val === 'number' && isNaN(val);
-    }),
-    $: function $(ele) {
+    },
+    $(ele) {
         if (document.querySelector) {
             return document.querySelector(ele);
         } else {
@@ -104,13 +94,13 @@ var utils = {
             }
         }
     },
-    extend: function extend() {
-        var options = void 0,
-            name = void 0,
-            clone = void 0,
-            copy = void 0,
-            source = void 0,
-            copyIsArray = void 0,
+    extend() {
+        let options,
+            name,
+            clone,
+            copy,
+            source,
+            copyIsArray,
             target = arguments[0] || {},
             i = 1,
             length = arguments.length,
@@ -122,7 +112,7 @@ var utils = {
             i++;
         }
 
-        if ((typeof target === 'undefined' ? 'undefined' : _typeof(target)) !== 'object' && type(target) !== 'function') {
+        if (typeof target !== 'object' && type(target) !== 'function') {
             target = {};
         }
 
@@ -169,7 +159,7 @@ var utils = {
 };
 
 function type(object) {
-    var class2type = {},
+    let class2type = {},
         type = class2type.toString.call(object),
         typeString = 'Boolean Number String Function Array Date RegExp Object Error Symbol';
 
@@ -177,16 +167,16 @@ function type(object) {
         return object + '';
     }
 
-    typeString.split(' ').forEach(function (type) {
-        class2type['[object ' + type + ']'] = type.toLowerCase();
+    typeString.split(' ').forEach(type => {
+        class2type[`[object ${type}]`] = type.toLowerCase();
     });
 
-    return (typeof object === 'undefined' ? 'undefined' : _typeof(object)) === 'object' || typeof object === 'function' ? class2type[type] || 'object' : typeof object === 'undefined' ? 'undefined' : _typeof(object);
+    return typeof object === 'object' || typeof object === 'function' ? class2type[type] || 'object' : typeof object;
 }
 
 function isPlainObject(object) {
-    var proto = void 0,
-        ctor = void 0,
+    let proto,
+        ctor,
         class2type = {},
         toString = class2type.toString,
         hasOwn = class2type.hasOwnProperty,
@@ -204,21 +194,15 @@ function isPlainObject(object) {
     return typeof ctor === 'function' && fnToString.call(ctor) === ObjectFunctionString;
 }
 
-function ClipImage() {
-    var _this = this;
-
-    for (var _len = arguments.length, options = Array(_len), _key = 0; _key < _len; _key++) {
-        options[_key] = arguments[_key];
-    }
-
+function ClipImage(...options) {
     console.log('ImageClip');
-    return new Promise(function (resolve, reject) {
-        _this.init(options, resolve, reject);
+    return new Promise((resolve, reject) => {
+        this.init(options, resolve, reject);
     });
 }
 
 ClipImage.prototype = {
-    init: function init(options, resolve, reject) {
+    init(options, resolve, reject) {
         console.log('options', options);
         this.defaultConfigOption = {
             width: 100,
@@ -227,8 +211,8 @@ ClipImage.prototype = {
             top: 0,
             type: 'jpeg',
             quality: 1, //0-1
-            success: function success() {},
-            error: function error() {}
+            success() {},
+            error() {}
         };
         this.errorObj = {};
 
@@ -240,9 +224,7 @@ ClipImage.prototype = {
 
         this.initCanvas(this.canvasImageSource, resolve, reject);
     },
-    initCanvas: function initCanvas(source, resolve, reject) {
-        var _this2 = this;
-
+    initCanvas(source, resolve, reject) {
         this.resultCanvas = document.createElement('canvas');
         this.resultCtx = this.resultCanvas.getContext('2d');
 
@@ -257,31 +239,42 @@ ClipImage.prototype = {
         if (utils.isString(source) || utils.isImageDom(source)) {
             this.sourceImage = new Image();
             this.sourceImage.setAttribute('crossOrigin', 'anonymous');
-            this.sourceImage.onload = function () {
-                _this2.clip(resolve);
+            this.sourceImage.onload = () => {
+                this.clip(resolve);
             };
-            this.sourceImage.onerror = function (error) {
-                _this2.configOptions.error && _this2.configOptions.error(error);
+            this.sourceImage.onerror = error => {
+                this.configOptions.error && this.configOptions.error(error);
                 reject(error);
             };
             this.sourceImage.src = utils.isImageDom(source) ? source.src : source;
-        } else if (utils.isCanvasDom(source)) {
+        } else if (utils.isCanvasDom(source) || utils.isVideoDom(source)) {
             this.sourceImage = source;
             this.clip(resolve);
-        } else if (utils.isVideoDom(source)) {}
+        } else {
+            reject();
+        }
     },
-    clip: function clip(resolve) {
+    clip(resolve) {
         console.log('source', this.sourceImage);
 
         this.resultCtx.drawImage(this.sourceImage, this.sourceX, this.sourceY, this.resultW, this.resultH, 0, 0, this.resultW, this.resultH);
 
-        this.resultB64 = this.resultCanvas.toDataURL('image/' + this.getOutType(this.configOptions.type), this.configOptions.quality);
+        this.resultB64 = this.resultCanvas.toDataURL(`image/${this.getOutType(this.configOptions.type)}`, this.configOptions.quality);
 
         this.configOptions.success && this.configOptions.success(this.resultB64);
 
+        // this.resultCanvas.toBlob((result) => {
+        //     console.log('toBlob result', result)
+        //
+        //     this.resultObj.b64 = this.resultB64
+        //     this.resultObj.size = 'Size: ' + utils.readFileSize(result)
+        //     this.resultObj.type = 'Type: ' + result.type
+        //     this.resultObj.width = this.op
+        // }, `image/${this.getOutType(this.configOptions.type)}`)
         resolve(this.resultB64);
     },
-    getRealVal: function getRealVal(val, direction) {
+
+    getRealVal(val, direction) {
         if (utils.isNumber(val) || utils.isString(val) && utils.isPX(val)) {
             return utils.isNumber(val) ? val : parseInt(val.trim().slice(0, -2));
         } else if (utils.isString(val) && utils.isPercent(val)) {
@@ -298,7 +291,7 @@ ClipImage.prototype = {
             return false;
         }
     },
-    getOutType: function getOutType(val) {
+    getOutType(val) {
         return utils.isJPG(val) ? 'jpeg' : 'png';
     }
 };
